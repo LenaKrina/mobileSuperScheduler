@@ -1,31 +1,23 @@
 package com.superscheduler.mobile.manager;
 
+import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 public class SessionHelper extends HelperBase {
-
-    public SessionHelper(WebDriver wd) {
-        super(wd);
+    public SessionHelper(AppiumDriver driver) {
+        super(driver);
     }
 
-    public void login(String email, String password) {
-        initLogin();
-        fillLoginForm(email, password);
-        confirmLogin();
-    }
 
     public void confirmLogin() {
-        waitForElementLocatedAndclick(By.cssSelector("#login"), 20);
+        tap(By.xpath("//*[resource-id='login_btn']"));
     }
 
     public void fillLoginForm(String userEmail, String password) {
-        waitForElementLocatedAndclick(By.name("user"), 20);
-        type(By.cssSelector("#user"), userEmail);
-        type(By.cssSelector("#password"), password);
+        type(By.xpath("//*[resource-id='log_email_input']"), userEmail);
+        type(By.xpath("//*[resource-id='log_password_input']"), password);
+
     }
 
-    public void initLogin() {
-        waitForElementLocatedAndclick(By.cssSelector("[href='/login']"), 20);
-    }
+
 }
